@@ -1,0 +1,15 @@
+<footer>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+    <a class="navbar-brand text-light">
+      <% if (flashMessages) { %>  
+        <% if (flashMessages.success) { %>　
+          <%= flashMessages.success %>
+          <% } else if (flashMessages.error) { %> 
+            <%= flashMessages.error %>
+          <% } else if (flashMessages.createView) { %> 
+            <%= flashMessages.createView %>
+        <% } %>
+      <% } %>
+    </a>
+  </nav>
+</footer>

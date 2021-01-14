@@ -1,0 +1,45 @@
+<!-- スタイル -->
+<style type="text/css">
+</style>
+<!-- タイトル -->
+<header class="my-0">
+  <div class="jumbotron">
+    <h1 class="display-10"><%=title%></h1>
+    <h1 class="display-10"><%=kunkoba%></h1>
+  </div>
+</header>
+<!-- 隠し項目（グーグル検索） -->
+<form style="display: none;" action="http://www.google.co.jp/search" target="_brank" method="get">
+  <input type="hidden" name="hl" value="ja">
+<input id="searchText" type="textbox" name="q" maxLength="255" size="30">
+<input id="btngoogleSeach" type="submit" name="btnG" value="Google 検索">
+</form>
+<script>
+  // クリックトリガー
+  var googleSearch = (str) => {
+    $("#keyword2").val(str);
+    console.log($("#keyword2").val());
+    $("#searchText").val($("#keyword1").val() + str);
+    $("#btngoogleSeach").trigger("click");
+  };
+</script>
+<!-- フォーム -->
+<form action="/word/create" method="POST" class="container">
+  <!-- 検索文字1 -->
+  <input id="keyword1" name="keyword1" type="text" class="form-control my-2" style="ime-mode: inactive" placeholder="検索キーワードを入力してください。">
+  <!-- 検索文字2 -->
+  <input id="keyword2" type="hidden" name="keyword2">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary" onclick="googleSearch(' とは')">とは</button>
+    <button type="button" class="btn btn-secondary" onclick="googleSearch(' 意味')">意味</button>
+    <button type="button" class="btn btn-secondary" onclick="googleSearch(' 由来')">由来</button>
+  </div>
+  <!-- 説明文 -->
+  <textarea id="textarea" name="discription" class="form-control my-2" placeholder="説明文を入力してください。" rows="8"></textarea>
+  <!-- URL -->
+  <input name="url" type="text" class="form-control my-2" placeholder="参考URL">
+  <!-- 登録ボタン -->
+  <button id="register" type="submit" class="mt-2 w-100 btn btn-info btn-block my-2" onclick="">単語を登録する</button>
+  <!-- 登録履歴ボタン -->
+  <button id="wordlist" type="button" class="mt-2 btn btn-info btn-block my-2" onclick="location.href='/word/getAll'">登録一覧を見る</button>
+</form>
